@@ -5,6 +5,12 @@ Zocket API is a RESTful API that allows users to interact with a PostgreSQL data
 ## Features
 
 - **Product Management**: Endpoints to manage products (create, read).
+- **RabbitMQ Integration**
+   - When a new product is created, the API sends a message to RabbitMQ. This can be used to trigger other actions or notify services about the new product.
+   - RabbitMQ is integrated into the backend, and any interaction with the product creation endpoint will result in a message being queued for further processing.
+- **S3 Storage**
+   - The images and compressed images associated with the product are uploaded to Amazon S3 for persistent storage.
+   - The product creation request will process the image files and store them in the S3 bucket. The API will return the URLs of the stored images.
 - **Caching**: Redis caching for faster data retrieval.
 - **Database Connection Pooling**: Optimized PostgreSQL connection pool for improved performance.
 
@@ -135,3 +141,4 @@ Content-Type: application/json
   "created_at": "2024-11-20T00:00:00Z"
 }
 ```
+
