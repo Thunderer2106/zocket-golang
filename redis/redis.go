@@ -56,25 +56,24 @@ func GetClient() *redis.Client {
 // var client *redis.Client
 
 // func InitRedis() {
-// 	// Get environment variables or use default values
 // 	addr := os.Getenv("REDIS_ADDR")
 // 	if addr == "" {
-// 		addr = "localhost:6379" // Default Redis address
+// 		addr = "localhost:6379" 
 // 	}
 
 // 	// password := os.Getenv("REDIS_PASSWORD")
 // 	db, err := strconv.Atoi(os.Getenv("REDIS_DB"))
 // 	if err != nil {
-// 		db = 0 // Default Redis DB if parsing fails
+// 		db = 0
 // 	}
 
 // 	client = redis.NewClient(&redis.Options{
 // 		Addr:     addr,
-// 		Password: "foobared", // No password by default
-// 		DB:       db,       // Default DB index
+// 		Password: "foobared", 
+// 		DB:       db,       
 // 	})
 
-// 	// Test connection
+
 // 	_, err = client.Ping(context.Background()).Result()
 // 	if err != nil {
 // 		log.Fatalf("Unable to connect to Redis: %v", err)
