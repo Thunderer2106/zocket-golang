@@ -49,6 +49,10 @@ To set up the project locally, follow the steps below:
     DB_NAME=pgdb
     REDIS_HOST=localhost
     REDIS_PORT=6379
+    REDIS_DB=0
+    AWS_ACCESS_KEY=""
+    AWS_SECRET_ACCESS_KEY=""
+    AWS_REGION=""
     ```
 
 5. Run the application:
@@ -69,3 +73,15 @@ Fetch a product by its ID. It first checks the cache and then queries the databa
 
 ```bash
 GET /products/1
+
+{
+  "id": 1,
+  "user_id": 10,
+  "product_name": "Test Product",
+  "product_description": "This is a test product.",
+  "product_images": ["image1.jpg", "image2.jpg"],
+  "compressed_product_images": ["compressed_image1.jpg", "compressed_image2.jpg"],
+  "product_price": 19.99,
+  "created_at": "2024-11-20T00:00:00Z"
+}
+```
