@@ -4,7 +4,7 @@ Zocket API is a RESTful API that allows users to interact with a PostgreSQL data
 
 ## Features
 
-- **Product Management**: Endpoints to manage products (create, read, update, delete).
+- **Product Management**: Endpoints to manage products (create, read).
 - **Caching**: Redis caching for faster data retrieval.
 - **Database Connection Pooling**: Optimized PostgreSQL connection pool for improved performance.
 
@@ -58,7 +58,7 @@ To set up the project locally, follow the steps below:
 5. Run the application:
 
     ```bash
-    go run main.go
+    go run cmd/api/main.go
     ```
 
 6. Your application will be running on `http://localhost:8080` by default.
@@ -82,6 +82,56 @@ GET /products/1
   "product_images": ["image1.jpg", "image2.jpg"],
   "compressed_product_images": ["compressed_image1.jpg", "compressed_image2.jpg"],
   "product_price": 19.99,
+  "created_at": "2024-11-20T00:00:00Z"
+}
+```
+
+# POST /products
+
+This endpoint allows you to create a new product by sending a POST request with the required product data. The server will process the request and return the created product's details.
+
+## Request
+
+### Method
+
+- `POST /products`
+
+### Request Body
+
+The request body must contain a JSON object with the following fields:
+
+| Field                      | Type        | Description                                       | Required  |
+|----------------------------|-------------|---------------------------------------------------|-----------|
+| `user_id`                  | `int`       | The ID of the user creating the product.          | Yes       |
+| `product_name`             | `string`    | The name of the product.                          | Yes       |
+| `product_description`      | `string`    | A brief description of the product.               | Yes       |
+| `product_images`           | `[]string`     | An array of product image filenames (URLs or paths). | Yes       |
+| `product_price`            | `float64`   | The price of the product.                         | Yes       |
+
+### Example Request
+
+```bash
+POST /products
+Content-Type: application/json
+
+{
+  "user_id": 1,
+  "product_name": "New Product",
+  "product_description": "Description of the new product.",
+  "product_images": ["image1.jpg"],
+  "product_price": 29.99
+}
+```
+### Example Response
+```bash
+{
+  "id": 2,
+  "user_id": 1,
+  "product_name": "New Product",
+  "product_description": "Description of the new product.",
+  "product_images": ["image1.jpg"],
+  "compressed_product_images": ["compressed_image1.jpg"],
+  "product_price": 29.99,
   "created_at": "2024-11-20T00:00:00Z"
 }
 ```
